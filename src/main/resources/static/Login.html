@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Player Registration</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+</style>
+<script>
+
+$(document).ready( function() {
+	   myObject = {};
+	   console.log("ready!");
+
+
+$("#loginButton").click(function(){
+	console.log("clicked!");
+	login();
+});
+});
+
+function login(){
+	login.username = $("#username").val();
+	login.password = $("#password").val();
+	var jsonData = JSON.stringify(myObject); 
+
+	$.ajax({ 
+ 		type: 'POST', 
+	    url: "./session/authorize", 
+	    headers: { 
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json' 
+	    },
+	    dataType: 'json', 			    
+	   	data: jsonData, 
+	    contentType: 'application/json',
+	    mimeType: 'application/json',
+	    success: function (data) {
+	    	console.log(data);
+			//dish out the session token
+	    }
+	});
+}
+</script>
+</head>
+<body>
+	<div id="loginContainer">
+		<input type="text" id="username" placeholder="Username"/><br />
+		<input type="password" id="password" placeholder="Secret Password" /><br />
+		<div class="submit-container">
+			<div id="loginButton" style="width:100px;height:100px;background:blue;"></div>
+		</div>
+	</div>
+</body>
+</html>

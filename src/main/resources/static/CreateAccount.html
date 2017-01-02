@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Player Registration</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+</style>
+<script>
+
+$(document).ready( function() {
+	   myObject = {};
+	   console.log("ready!");
+
+
+$("#submitRegistration").click(function(){
+	console.log("clicked!");
+	submitRegistration();
+});
+});
+
+function submitRegistration(){
+	myObject.username = $("#username").val();
+	myObject.address = $("#email").val();
+	myObject.password = {"passwordText" : $("#password").val()};
+	myObject.number = $("#number").val();
+	myObject.gender = $("#gender").val();
+	myObject.notifications = null;
+	myObject.name = $("#name").val();
+	myObject.uuid="";
+	
+	var jsonData = JSON.stringify(myObject); 
+
+	$.ajax({ 
+ 		type: 'POST', 
+	    url: "./player/finalizePlayer", 
+	    headers: { 
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json' 
+	    },
+	    dataType: 'json', 			    
+	   	data: jsonData, 
+	    contentType: 'application/json',
+	    mimeType: 'application/json',
+	    success: function (data) {
+	    console.log(data);
+			
+	    }
+	});
+}
+</script>
+</head>
+<body>
+	<div id="loginContainer">
+		<input type="text" id="username" placeholder="Username"/><br />
+		<input type="text" id="email" placeholder="Email"/><br />
+		<input type="text" id="Email2" placeholder="Confirm Email"/><br />
+		<input type="password" id="password" placeholder="Secret Password" /><br />
+		<input type="password" id="password2" placeholder="Confirm Secret Password" /><br />
+		<input type="text" id="number" placeholder="Mobile Number" /><br />
+		<input type="text" id="gender" placeholder="Gender" /><br />
+		<input type="text" id="name" placeholder="Name" /><br />
+		<div class="submit-container">
+			<div id="submitRegistration" style="width:100px;height:100px;background:blue;"></div>
+		</div>
+	</div>
+</body>
+</html>
