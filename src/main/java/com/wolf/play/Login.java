@@ -2,15 +2,15 @@ package com.wolf.play;
 
 public class Login {
 
-	private Password password;
+	private String password;
 	
 	private String username;
 	
-	public Password getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(Password password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 

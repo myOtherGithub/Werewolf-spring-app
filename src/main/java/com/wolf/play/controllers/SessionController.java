@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wolf.play.Login;
-import com.wolf.play.Player;
 import com.wolf.play.Session;
-import com.wolf.play.implementation.PlayerDataService;
 import com.wolf.play.implementation.SessionService;
 
 @Controller
@@ -25,6 +23,12 @@ public class SessionController {
 	 @ResponseBody
 	 public Session authorize(@RequestBody Login login) {
 		return sessionService.authorizeAndCreateSession(login);
+	 }
+	 
+	 @RequestMapping(value="/authorizeSession", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+	 @ResponseBody
+	 public boolean checkSession(@RequestBody Session session){
+		 return sessionService.checkSession(session);
 	 }
 	 
 }
